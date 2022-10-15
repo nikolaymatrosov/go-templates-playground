@@ -1,0 +1,9 @@
+foo:
+  bar: baz
+  items:
+  {{range .items -}}
+  - {{. -}}
+  {{end}}
+s3:
+  access_key: {{.s3.access}}
+  secret_key: {{.s3.secret}}

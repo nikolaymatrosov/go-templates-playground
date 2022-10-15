@@ -1,0 +1,8 @@
+{
+  "templates": {
+    "user-data": "#cloud-config\ndatasource:\n  Ec2:\n    strict_id: false\nssh_pwauth: no\nwrite_files:\n  # Можно передавать файлы в Gzip формате, если они большие\n  - encoding: gzip\n    content: !!binary | \n      {{gzip_template \"config\"}}\n    owner: root:root\n    path: /opt/gziped\n    permissions: '0644'\n  # Можно просто в Base64 кодировке.\n  - encoding: b64\n    content: {{base64 .nginxConfig}}\n    owner: root:root\n    path: /opt/nginxConfig\n    permissions: '0644'\nusers:\n  - name: {{.username}}\n    sudo: ALL=(ALL) NOPASSWD:ALL\n    shell: /bin/bash\n    ssh-authorized-keys:\n      - {{.sshKey}}"
+  },
+  "includes": {
+    "config": "foo:\n  bar: baz\n  items:\n  {{range .items -}}\n  - {{. }}\n  {{end}}\ns3:\n  access_key: {{.s3.access}}\n  secret_key: {{.s3.secret}}"
+  }
+}

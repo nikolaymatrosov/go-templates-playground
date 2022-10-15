@@ -1,0 +1,25 @@
+#cloud-config
+datasource:
+  Ec2:
+    strict_id: false
+ssh_pwauth: no
+write_files:
+  # Можно передавать файлы в Gzip формате, если они большие
+  - encoding: gzip
+    content: !!binary | 
+      H4sIAAAAAAAA/0rLz7fiUlBISiyyUkhKrOJSUMgsSc0tBonpKhiCSSMwmZafz6WgwFVsDJJKTE5OLS6Oz06ttFKIdI53dHZ2DQ7mUlAoTk0uSi2Biwe7Oge5hgACAAD//6X9z/NjAAAA
+    owner: root:root
+    path: /opt/gziped
+    permissions: '0644'
+  # Можно просто в Base64 кодировке.
+  - encoding: b64
+    content: c2VydmVyIHsKICAgIGxvY2F0aW9uIC8gewogICAgICAgIHByb3h5X3Bhc3MgaHR0cDovL2xvY2FsaG9zdDo4MDgwOwogICAgfQoKICAgIGxvY2F0aW9uIC9pbWFnZXMvIHsKICAgICAgICByb290IC9kYXRhOwogICAgfQp9
+    owner: root:root
+    path: /opt/nginxConfig
+    permissions: '0644'
+users:
+  - name: nikthespirit
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDEM6X0HVXMStf/6oh8Wc4+bvxG3hn/6T+w4GXpP5it3+BQsPXcC5a68n5KNs8rQjm7QsDiV8R8bSyVwuT6+T4EjM14H4Xw6HUQiQUTmZdJgldIZy4HeNV1wp9umBAgUXWY+RRWde2LRSYmeqgtlgMExX75atWFEZLa1+5a1Esgk+PAuYLD9swFwLGzqY/1qzfNqB9Be724yboULnF04yCEFaIiQae3Mhq/hipNc6r7aZmJ2XBo/XzvSdrj/xA0o9hfDQaqTQHZwBk+EePbJmUikVUAdTufGpoBBeSSszdch5ACBRCcIT7z7VuJ6kE+kZLikxQsxVgLEKmcnrn4frFbXRUzdBVQM+QMTuJ5qwJPIhGUspK6lo7KJ2AvoMYCScsGyXU9bJTld/T7Noh7tPiMrH+W/I4A/aLE7qIxWKxPMU2ljkEf4lm1K3okDHSit+NLeh4t5visrornIKxKxhcjv/grTsPjqD1kntDVOBl15gdyUGHKqdTM0N266O3bNDU52mh+zd6AH3n8lBC7vOWdlbpy1YMrcnmLAYELRRGLuOvZnAFTifcMI3cBMC3vJsqhd+zlgFAG/UE0JIrAbxd4dOOLrRFMZgirBTIIICPVigCyqWZ0LobiQy/8z3U7zuX113szk04ox9/dT5XKKCZLoPAn705IXLDYSERadUEZ7Q== nikthespirit@yandex-team.ru

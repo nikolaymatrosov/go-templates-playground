@@ -1,0 +1,14 @@
+{
+  "username": "nikthespirit",
+  "sshKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDEM6X0HVXMStf/6oh8Wc4+bvxG3hn/6T+w4GXpP5it3+BQsPXcC5a68n5KNs8rQjm7QsDiV8R8bSyVwuT6+T4EjM14H4Xw6HUQiQUTmZdJgldIZy4HeNV1wp9umBAgUXWY+RRWde2LRSYmeqgtlgMExX75atWFEZLa1+5a1Esgk+PAuYLD9swFwLGzqY/1qzfNqB9Be724yboULnF04yCEFaIiQae3Mhq/hipNc6r7aZmJ2XBo/XzvSdrj/xA0o9hfDQaqTQHZwBk+EePbJmUikVUAdTufGpoBBeSSszdch5ACBRCcIT7z7VuJ6kE+kZLikxQsxVgLEKmcnrn4frFbXRUzdBVQM+QMTuJ5qwJPIhGUspK6lo7KJ2AvoMYCScsGyXU9bJTld/T7Noh7tPiMrH+W/I4A/aLE7qIxWKxPMU2ljkEf4lm1K3okDHSit+NLeh4t5visrornIKxKxhcjv/grTsPjqD1kntDVOBl15gdyUGHKqdTM0N266O3bNDU52mh+zd6AH3n8lBC7vOWdlbpy1YMrcnmLAYELRRGLuOvZnAFTifcMI3cBMC3vJsqhd+zlgFAG/UE0JIrAbxd4dOOLrRFMZgirBTIIICPVigCyqWZ0LobiQy/8z3U7zuX113szk04ox9/dT5XKKCZLoPAn705IXLDYSERadUEZ7Q== nikthespirit@yandex-team.ru\n",
+  "items": [
+    1,
+    2,
+    "foo"
+  ],
+  "s3": {
+    "access": "YC_ACCESS",
+    "secret": "YC_SECRET"
+  },
+  "nginxConfig": "server {\n    location / {\n        proxy_pass http://localhost:8080;\n    }\n\n    location /images/ {\n        root /data;\n    }\n}"
+}

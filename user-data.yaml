@@ -1,0 +1,25 @@
+#cloud-config
+datasource:
+  Ec2:
+    strict_id: false
+ssh_pwauth: no
+write_files:
+  # Можно передавать файлы в Gzip формате, если они большие
+  - encoding: gzip
+    content: !!binary | 
+      {{gzip_template "config"}}
+    owner: root:root
+    path: /opt/gziped
+    permissions: '0644'
+  # Можно просто в Base64 кодировке.
+  - encoding: b64
+    content: {{base64 .nginxConfig}}
+    owner: root:root
+    path: /opt/nginxConfig
+    permissions: '0644'
+users:
+  - name: {{.username}}
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh-authorized-keys:
+      - {{.sshKey}}
